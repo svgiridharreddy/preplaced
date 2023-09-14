@@ -26,10 +26,21 @@ const data2 = {
     dob: "Jun"
   }
 };
-const result = {...data, ...data2}
+function usingSpread(data,data2){
+  const result = {}
+  for(key in data){
+    result[key] = {...result[key], ...data[key]}
+  }
+
+  for(key in data2){
+    result[key] = {...result[key], ...data2[key]}
+  }
+  console.log(result);
+}
+
 // console.log(result);
 
-// my output with spread operator: ( incorrect output) how to fix
+// my output with spread operator: ( incorrect output) how to 
 /* 
   {
     '123': { name: 'Alice', id: 123, dob: 'Dec' },
@@ -37,17 +48,9 @@ const result = {...data, ...data2}
     '456': { name: 'Bob1', id: 456, dob: 'Nov', eth: 'hi' }
   } 
 */
-
+// using loop
 function combineObjects(obj1,obj2){
-  const result = {};
-  Object.keys(obj1).map(key => {
-    const childObj = obj1[key];
-    result[key] = childObj
-    Object.keys(childObj).map(childKey => {
-      console.log("data key is", [key,childKey]);
-      result[key][childKey] = obj1[key][childKey]
-    })
-  })
+  const result = {...obj1};
 
   Object.keys(obj2).map(key => {
     const childObj = obj2[key]
@@ -63,9 +66,9 @@ function combineObjects(obj1,obj2){
   return result;
 
 }
-combineObjects(data,data2)
+// combineObjects(data,data2)
 
-
+usingSpread(data,data2);
 // expected output 
 // output = {
 //     456: {
