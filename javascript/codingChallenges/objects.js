@@ -29,7 +29,7 @@ const data2 = {
 const result = {...data, ...data2}
 // console.log(result);
 
-// my output with spread operator: ( in correct output) 
+// my output with spread operator: ( incorrect output) how to fix
 /* 
   {
     '123': { name: 'Alice', id: 123, dob: 'Dec' },
@@ -44,18 +44,21 @@ function combineObjects(obj1,obj2){
     const childObj = obj1[key];
     result[key] = childObj
     Object.keys(childObj).map(childKey => {
-      // console.log(obj1[key]);
+      console.log("data key is", [key,childKey]);
       result[key][childKey] = obj1[key][childKey]
     })
   })
 
   Object.keys(obj2).map(key => {
     const childObj = obj2[key]
-    result[key] = childObj;
-    Object.keys(childObj).map(childKey => {
-      result[key][childKey] = obj2[key][childKey]
-    })
-  } )
+    if(result.hasOwnProperty(key)){
+      Object.keys(childObj).map(childKey => {
+        result[key][childKey] = obj2[key][childKey]
+      })
+    }else{
+      result[key] = childObj;
+    }
+  })
   console.log(result);
   return result;
 
