@@ -15,7 +15,6 @@ class Accordian{
   constructor(selector){
     this.selector = document.querySelector(selector);
     this.buttons = this.selector.querySelectorAll(".accordian");
-    console.log(this.buttons);
     this.buttons.forEach(button => {
       button.addEventListener("click", () => this.toggleAccordian(button))
     });
